@@ -68,7 +68,13 @@ def run_task_a(model_name, train_df, test_df, output_dir, fine_tune=False, k_fol
     print(f"TASK A: Native Legal Classification ({model_name})")
     print("="*40)
     
-    model = get_model(model_name)
+    try:
+        model = get_model(model_name)
+    except ValueError as e:
+        print(f"Error: {e}")
+        print(f"Model '{model_name}' likely requires external files (e.g., classification_model, masked_language_model).")
+        print("Please refer to README.md for download instructions (SpanishNotaryCollection).")
+        return
     
     # Case 1: K-Fold Cross Validation
     if k_folds > 0:
@@ -149,7 +155,14 @@ def run_task_b(model_name, train_df, test_df, output_dir, fine_tune=False):
     print(f"TASK B: Cross-Lingual Bias (Delta-F1) - Model: {model_name}")
     print("="*40)
     
-    model = get_model(model_name)
+    try:
+        model = get_model(model_name)
+    except ValueError as e:
+        print(f"Error: {e}")
+        print(f"Model '{model_name}' likely requires external files (e.g., classification_model, masked_language_model).")
+        print("Please refer to README.md for download instructions (SpanishNotaryCollection).")
+        return
+
     results = {}
     
     # 1. Native (Spanish)

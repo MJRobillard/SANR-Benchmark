@@ -94,6 +94,7 @@ Model developers can improve Spanish performance without licensing negotiations 
 **Spanish Notary Collection (1653–1658)**
 https://github.com/raopr/SpanishNotaryCollection
 
+Paper:
 Shraboni Sarker, Ahmad Tamim Hamad, Hulayyil Alshammari, Viviana Grieco, and Praveen Rao. Seventeenth-Century Spanish American Notary Records for Fine-Tuning Spanish Large Language Models. In Proc. of 2024 ACM/IEEE-CS Joint Conference on Digital Libraries (JCDL 2024), 5 pages, 2024.
 
 * **Period:** 1653–1658
@@ -101,24 +102,7 @@ Shraboni Sarker, Ahmad Tamim Hamad, Hulayyil Alshammari, Viviana Grieco, and Pra
 * **Domain:** Notarial law (Wills, Powers of Attorney, Sales, Labor Contracts)
 * **Size:** ~1,300+ labeled records
 
-### Data Schema (Gold Standard)
 
-| Column | Description | Source in JSON |
-| :--- | :--- | :--- |
-| `id` | Unique Record ID | `id` |
-| `year` | Year of document | `year` |
-| `notary` | Author Name | `author_name` |
-| `rollo` | Archival Bundle ID | `rollo_number` |
-| `image_num` | Page Number | `image_number` |
-| `text_original` | Ground Truth Spanish Text | `content` |
-| `label_primary` | Main Legal Class | `class_label[0]` |
-| `label_extended`| Detailed Context | `extended_class_label` |
-| `wikidata_uri` | Semantic Link | `wikidata_concept` |
-| `text_english` | Generated via translation | (Derived) |
-| `text_chinese` | Generated via translation | (Derived) |
-| `ocr_noisy` | VLM-generated OCR text | (Derived) |
-
----
 
 ## 3. Tasks
 
@@ -191,16 +175,15 @@ class ModelAdapter:
 
 ### 4.6 Registering a New Model
 
-```python
-MODEL_REGISTRY = {
-    "logreg": LogisticRegressionAdapter(),
-    "svm": LinearSVMAdapter(),
-    "gpt4o": GPT4oAdapter(),
-    "claude": ClaudeAdapter(),
-    "deepseek": DeepSeekAdapter(),
-    "llama3": Llama3Adapter(),
-}
-```
+Add the model in src/_init_.py
+
+
+### Registering the fine tuned model
+https://github.com/raopr/SpanishNotaryCollection
+Download, place inside the `src\models\` inside respsective classifcation or masked_language_model folders.
+The `SANR-Embed\src\models\classification_adapter.py` and `SANR-Embed\src\models\masked_lm_adapter.py` are made to adapt it to the registry. I would incorporate it in the repo but they're too loarge. 
+
+### Registering 
 
 ---
 

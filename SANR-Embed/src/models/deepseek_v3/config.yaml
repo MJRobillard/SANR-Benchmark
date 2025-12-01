@@ -1,0 +1,12 @@
+model_name: deepseek-v3
+hf_repo: deepseek-ai/DeepSeek-V3
+context_length: 8192
+embedding_dim: 4096
+translation_prompt: |
+  Translate the following Spanish notarial text into {{lang}}.
+  Preserve legal meaning and notarial formulae.
+
+
+
+
+

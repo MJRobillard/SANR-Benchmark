@@ -1,0 +1,12 @@
+model_name: qwen-2.5
+hf_repo: Qwen/Qwen2.5-7B-Instruct
+context_length: 32768
+embedding_dim: 3584
+translation_prompt: |
+  Translate the following Spanish notarial text into {{lang}}.
+  Preserve legal meaning and notarial formulae.
+
+
+
+
+
